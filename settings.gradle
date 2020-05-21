@@ -1,0 +1,2 @@
+rootProject.name='MyPM25APP'
+include ':app'
