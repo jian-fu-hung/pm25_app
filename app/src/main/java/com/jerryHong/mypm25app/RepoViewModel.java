@@ -1,6 +1,11 @@
 package com.jerryHong.mypm25app;
 
-import android.view.View;
+import com.jerryHong.mypm25app.data.DataModel;
+import com.jerryHong.mypm25app.data.model.RepoAQIResponse;
+import com.jerryHong.mypm25app.data.model.RepoGetResponse;
+import com.jerryHong.mypm25app.data.model.RepoQiaotouResponse;
+
+import java.util.List;
 
 import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
@@ -14,20 +19,25 @@ public class RepoViewModel extends ViewModel {
 
     public final ObservableBoolean isLoading = new ObservableBoolean(false);
 
-    private final MutableLiveData<String> repos = new MutableLiveData<>();
+    private final MutableLiveData<List<RepoAQIResponse>> repos = new MutableLiveData<>();
 
-    private DataModel dataModel = new DataModel();
+    private DataModel dataModel;
 
-    LiveData<String> getRepo(){
+    public RepoViewModel(DataModel dataModel) {
+        super();
+        this.dataModel = dataModel;
+    }
+
+    LiveData<List<RepoAQIResponse>> getRepo(){
         return repos;
     }
 
-    void searchRepo(String query){
+    void searchRepo(){
         isLoading.set(true);
 
-        dataModel.getPMRepo(query, new DataModel.onDataReadyCallback() {
+        dataModel.searchRepo(new DataModel.onDataReadyCallback() {
             @Override
-            public void onDataReady(String data) {
+            public void onDataReady(List<RepoAQIResponse> data) {
                 isLoading.set(false);
                 repos.setValue(data);
             }
