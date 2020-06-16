@@ -14,6 +14,7 @@ import com.jerryHong.mypm25app.data.model.RepoQiaotouResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,6 +39,12 @@ public class DataModel {
                     }
                 });
     }
+
+    public Single<List<RepoAQIResponse>> searchRepoRX(){
+        return openDataService.searchReposRX("0","76","json");
+    }
+
+
 
     public interface onDataReadyCallback {
         void onDataReady(List<RepoAQIResponse> data);

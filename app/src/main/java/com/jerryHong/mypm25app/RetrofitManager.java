@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
@@ -23,6 +24,7 @@ public class RetrofitManager {
                         .readTimeout(60, TimeUnit.SECONDS)
                         .writeTimeout(60, TimeUnit.SECONDS)
                         .build())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // <- This
                 .build();
 
         openDataService = retrofit.create(OpenDataService.class);
