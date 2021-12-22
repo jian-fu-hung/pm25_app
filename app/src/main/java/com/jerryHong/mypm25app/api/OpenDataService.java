@@ -1,5 +1,6 @@
 package com.jerryHong.mypm25app.api;
 
+import com.jerryHong.mypm25app.data.model.RepoAQIHeaderResponse;
 import com.jerryHong.mypm25app.data.model.RepoAQIResponse;
 import com.jerryHong.mypm25app.data.model.RepoGetResponse;
 import com.jerryHong.mypm25app.data.model.RepoQiaotouResponse;
@@ -12,9 +13,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface OpenDataService {
-    @GET("/webapi/Data/ATM00679/")
-    Call<List<RepoAQIResponse>> searchRepos(@Query("$skip") String skip, @Query("$top") String top, @Query("format") String format);
+    @GET("/api/v1/aqx_p_432")
+    Call<List<RepoAQIResponse>> searchRepos(@Query("format") String format, @Query("limit") String limit, @Query("api_key") String apiKey);
 
-    @GET("/webapi/Data/ATM00679/")
-    Single<List<RepoAQIResponse>> searchReposRX(@Query("$skip") String skip, @Query("$top") String top, @Query("format") String format);
+    @GET("/api/v1/aqx_p_432")
+    Single<RepoAQIHeaderResponse<List<RepoAQIResponse>>> searchReposRX(@Query("format") String format, @Query("limit") String limit, @Query("api_key") String apiKey);
 }

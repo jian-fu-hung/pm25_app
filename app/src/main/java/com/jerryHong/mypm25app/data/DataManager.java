@@ -33,7 +33,7 @@ public class DataManager {
         db.close();
     }
 
-    public RepoAQIDao getRepoAQIDao(){
-        return db.getRepoAQI();
-    }
+//    public RepoAQIDao getRepoAQIDao(){
+//        return db.getRepoAQI();
+//    }
 }

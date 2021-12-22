@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jerryHong.mypm25app.RetrofitManager;
 import com.jerryHong.mypm25app.api.OpenDataService;
+import com.jerryHong.mypm25app.data.model.RepoAQIHeaderResponse;
 import com.jerryHong.mypm25app.data.model.RepoAQIResponse;
 import com.jerryHong.mypm25app.data.model.RepoGetResponse;
 import com.jerryHong.mypm25app.data.model.RepoQiaotouResponse;
@@ -40,8 +41,8 @@ public class DataModel {
                 });
     }
 
-    public Single<List<RepoAQIResponse>> searchRepoRX(){
-        return openDataService.searchReposRX("0","76","json");
+    public Single<RepoAQIHeaderResponse<List<RepoAQIResponse>>> searchRepoRX(){
+        return openDataService.searchReposRX("json","100","4444d738-f41b-43e1-bda5-9312d61d1d36");
     }
 
 

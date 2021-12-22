@@ -17,7 +17,7 @@ public class RetrofitManager {
     private RetrofitManager() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://opendata.epa.gov.tw/")
+                .baseUrl("https://data.epa.gov.tw")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(new OkHttpClient().newBuilder()
                         .connectTimeout(60, TimeUnit.SECONDS)

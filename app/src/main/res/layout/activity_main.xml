@@ -8,14 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.jerryHong.mypm25app.RepoViewModel" />
+            type="com.jerryHong.mypm25app.main.MainViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        tools:context=".main.MainActivity"
         >
 
         <Button
