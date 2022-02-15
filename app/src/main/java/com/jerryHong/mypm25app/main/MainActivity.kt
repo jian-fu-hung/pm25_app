@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.jerryHong.mypm25app.GithubViewModelFactory
 import com.jerryHong.mypm25app.R
 import com.jerryHong.mypm25app.RepoAdapter
 import com.jerryHong.mypm25app.data.DataModel
@@ -29,7 +27,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this, MainViewModel.MainViewModelFactory(dataModel)).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            MainViewModel.MainViewModelFactory(dataModel)
+        ).get(MainViewModel::class.java)
         binding.viewModel = viewModel
 
         initView()
@@ -40,12 +41,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.searchRepoRX()
     }
 
-    private fun initView(){
+    private fun initView() {
         binding.button.setOnClickListener { viewModel.searchRepoRX() }
         initList()
         initSwipeRefreshLayout()
 
-        viewModel.isLoading.observe(this@MainActivity, object: Observer<Boolean> {
+        viewModel.isLoading.observe(this@MainActivity, object : Observer<Boolean> {
             override fun onChanged(isLoading: Boolean?) {
                 isLoading?.let {
                     binding.refreshLayout.isRefreshing = it
@@ -53,9 +54,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.repoList.observe(this@MainActivity, object: Observer<List<RepoAQIResponse>>{
+        viewModel.repoList.observe(this@MainActivity, object : Observer<List<RepoAQIResponse>> {
             override fun onChanged(list: List<RepoAQIResponse>?) {
-                list?.let{
+                list?.let {
                     repoAdapter.setItem(it)
                 }
             }
