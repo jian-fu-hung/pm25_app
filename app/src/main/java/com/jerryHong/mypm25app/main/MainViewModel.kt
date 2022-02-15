@@ -47,13 +47,12 @@ class MainViewModel(private val dataModel: DataModel) : BaseViewModel() {
 
 
     class MainViewModelFactory(private val dataModel: DataModel): ViewModelProvider.Factory{
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(MainViewModel::class.java)){
                 return MainViewModel(dataModel) as T
             } else{
                 throw ClassCastException("class error")
             }
         }
-
     }
 }
